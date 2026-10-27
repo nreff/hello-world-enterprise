@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<!--
+  Hi. If you're reading the source, you are exactly who we're trying to sell to.
+  This entire platform wraps one line of code. Please don't tell procurement.
+  Parody. Every company and person on this page is made up.
+  theme: rim (by request) · rim: night · waived: "never the planet from space" (the user asked for Earthrise)
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HelloWorld Enterprise – Say hello to the world. At scale.</title>
+<meta name="description" content="The industry’s most trusted platform for printing “Hello, World.” A parody.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --color-paper:oklch(9% 0.008 75); --color-paper-2:oklch(12.5% 0.009 75); --color-paper-3:oklch(6.5% 0.007 75);
+  --color-ink:oklch(94% 0.010 80); --color-ink-2:oklch(84% 0.011 80); --color-muted:oklch(68% 0.012 80); --color-muted-2:oklch(50% 0.010 80);
+  --color-rule:oklch(25% 0.010 78); --color-rule-2:oklch(16% 0.009 78);
+  --color-accent:oklch(72% 0.17 45); --color-accent-ink:oklch(10% 0.02 45); --color-accent-2:oklch(74% 0.12 250); --color-focus:oklch(78% 0.15 45);
+  --font-display:"Switzer","Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; --font-body:var(--font-display);
+  --font-outlier:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --dur-short:160ms; --ease-out:cubic-bezier(.2,.7,.2,1);
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* Rim is dark in both colourways. */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark}}
+:root[data-theme="dark"]{color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--color-paper);color:var(--color-ink-2);font:400 17px/1.55 var(--font-body);-webkit-font-smoothing:antialiased}
+::selection{background:color-mix(in oklab,var(--color-accent) 35%,transparent);color:var(--color-ink)}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.02;color:var(--color-ink);margin:0}
+h2{letter-spacing:-0.03em}
+a{color:var(--color-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--color-focus);outline-offset:2px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+.label{font-weight:500;font-size:.88rem;color:var(--color-muted)}
+.measure,code{font-family:var(--font-outlier);font-variant-numeric:tabular-nums;font-weight:400}
+.measure small{font-size:.5em;color:var(--color-muted);margin-left:.15em}
+
+/* controls: square, never round */
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--color-rule);background:none;color:var(--color-ink);font:500 .92rem var(--font-body);padding:.7rem 1.15rem;border-radius:0;cursor:pointer;text-decoration:none;transition:background-color var(--dur-short) var(--ease-out),border-color var(--dur-short) var(--ease-out)}
+.btn:hover{border-color:var(--color-muted);text-decoration:none}
+.btn--primary{background:var(--color-accent);border-color:var(--color-accent);color:var(--color-accent-ink)}
+.btn--primary:hover{background:var(--color-focus);border-color:var(--color-focus)}
+.btn--sm{padding:.45rem .8rem;font-size:.84rem}
+.pair{display:flex;gap:.6rem;flex-wrap:wrap}
+.ticks{position:relative}
+.ticks::before,.ticks::after{content:"";position:absolute;width:12px;height:12px;border:0 solid var(--color-muted);pointer-events:none;z-index:2}
+.ticks::before{top:-6px;left:-6px;border-width:1px 0 0 1px}
+.ticks::after{right:-6px;bottom:-6px;border-width:0 1px 1px 0}
+
+/* status + header */
+.status{border-bottom:1px solid var(--color-rule-2);font-size:.85rem}
+.status .wrap{display:flex;gap:.6rem;align-items:center;padding-top:.5rem;padding-bottom:.5rem;flex-wrap:wrap}
+.sq{width:8px;height:8px;background:var(--color-accent);display:inline-block;flex:none}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--color-paper)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--color-paper);border-bottom:1px solid var(--color-rule)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:60px}
+.wordmark{font-weight:500;color:var(--color-ink);letter-spacing:-.02em;font-size:1.05rem}
+.wordmark span{color:var(--color-muted)}
+nav ul{display:flex;gap:1.6rem;list-style:none;margin:0;padding:0;font-size:.9rem}
+nav a{color:var(--color-ink-2)}
+@media (max-width:860px){nav ul{display:none}}
+
+/* hero: the scene */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--color-rule)}
+.scene{display:block;width:100%;height:100%}
+.hero-copy{position:relative;z-index:1;padding-top:5rem;padding-bottom:2rem}
+h1{font-size:clamp(2.9rem,6.4vw,5.6rem);letter-spacing:-0.04em;max-width:11ch;margin-bottom:1.5rem}
+.lede{max-width:27rem;margin:0 0 2rem;font-size:1.1rem}
+.fine{margin:1rem 0 0}
+.strip{position:absolute;left:0;right:0;bottom:0;z-index:1;background:color-mix(in oklab,var(--color-paper) 78%,transparent);border-top:1px solid var(--color-rule)}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:.4rem 2rem;padding-top:.7rem;padding-bottom:.7rem;font:400 .8rem var(--font-outlier);color:var(--color-ink-2)}
+.strip b{font-weight:400;color:var(--color-muted)}
+@media (min-width:900px){
+  .hero{min-height:max(720px,min(96vh,900px))}
+  .scene-box{position:absolute;inset:0}
+  .hero-copy{padding-top:6.5rem}
+}
+@media (max-width:899px){
+  .scene-box{position:relative;margin-top:-1rem}
+  .scene{height:min(100vw,520px)}
+  .strip{position:relative}
+  .hero-copy{padding-top:3rem;padding-bottom:1.5rem}
+}
+
+
+/* hero photo: Apollo 8 Earthrise over the illustrated fallback */
+.photo{position:absolute;inset:0;z-index:0;display:block}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:62% 38%;display:block}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--color-paper) 0%,color-mix(in oklab,var(--color-paper) 70%,transparent) 32%,transparent 62%),linear-gradient(0deg,color-mix(in oklab,var(--color-paper) 85%,transparent) 0,transparent 22%)}
+.photo[hidden]{display:none}
+@media (max-width:899px){.photo::after{background:linear-gradient(0deg,var(--color-paper) 0,transparent 30%)}.photo img{object-position:60% 35%}}
+
+/* sections */
+section{padding:5.5rem 0;border-top:1px solid var(--color-rule)}
+.hero+section{border-top:0}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:3rem;align-items:end}
+.head h2{font-size:clamp(2rem,4.2vw,3.2rem)}
+.head p{margin:0;max-width:34rem}
+@media (max-width:820px){.head{grid-template-columns:1fr;gap:1rem}}
+
+/* demo well */
+.demo{background:var(--color-paper-2);border:1px solid var(--color-rule)}
+.demo-top{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.75rem 1rem;border-bottom:1px solid var(--color-rule);flex-wrap:wrap}
+.plans{display:flex;flex-wrap:wrap}
+.plans button{font:500 .82rem var(--font-body);color:var(--color-ink-2);background:transparent;border:1px solid var(--color-rule);margin-left:-1px;padding:.35rem .8rem;cursor:pointer;border-radius:0;transition:background-color var(--dur-short) var(--ease-out)}
+.plans button:hover{background:var(--color-paper)}
+.plans button[aria-pressed="true"]{background:var(--color-paper-3);color:var(--color-ink);box-shadow:inset 3px 0 0 var(--color-accent)}
+.demo-body{padding:1rem 1.1rem .5rem;height:320px;overflow-y:auto;font:400 .84rem/1.65 var(--font-outlier)}
+.demo-body p{margin:0;white-space:pre-wrap;word-break:break-word}
+.t-dim{color:var(--color-muted)}.t-ok{color:var(--color-ink-2)}.t-warn{color:var(--color-accent-2)}
+.t-err{color:var(--color-ink)}.t-err::before{content:"■ ";color:var(--color-accent)}
+.t-out{font:500 2rem/1.1 var(--font-display)!important;letter-spacing:-.03em;color:var(--color-ink);margin:.8rem 0!important}
+.demo-foot{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.75rem 1rem;border-top:1px solid var(--color-rule);flex-wrap:wrap}
+.run:disabled{opacity:.6;cursor:progress}
+
+/* figures */
+.figures{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--color-rule);border-bottom:1px solid var(--color-rule);margin-top:4rem}
+.figures div{padding:2rem 1.5rem 2rem 0}
+.figures div+div{border-left:1px solid var(--color-rule);padding-left:1.5rem}
+.figures .measure{display:block;font-size:clamp(2.4rem,5.2vw,4rem);letter-spacing:-0.03em;color:var(--color-ink);line-height:1;margin-bottom:.6rem}
+@media (max-width:720px){.figures{grid-template-columns:1fr}.figures div,.figures div+div{border-left:0;padding:1.4rem 0;border-bottom:1px solid var(--color-rule-2)}.figures div:last-child{border-bottom:0}}
+.logos{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:.5rem 2rem;color:var(--color-muted);font-size:1rem}
+.logos .label{width:100%;margin-bottom:.25rem;color:var(--color-muted-2)}
+
+/* ruled rows */
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--color-rule)}
+.rows li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:1.5rem;padding:1.25rem 0;border-bottom:1px solid var(--color-rule-2)}
+.rows h3{font-size:1.3rem;letter-spacing:-.02em}
+.rows p{margin:0}
+.rows .tag{display:block;font-weight:500;font-size:.85rem;color:var(--color-muted);margin-top:.3rem}
+@media (max-width:680px){.rows li{grid-template-columns:1fr;gap:.4rem}}
+
+/* trace */
+.trace{background:var(--color-paper-2);border:1px solid var(--color-rule)}
+.trace-head{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.8rem 1rem;border-bottom:1px solid var(--color-rule);font-size:.85rem}
+.axis{display:grid;grid-template-columns:13rem 1fr 5rem;padding:.4rem 1rem 0}
+.axis-track{position:relative;height:1.4rem;border-bottom:1px solid var(--color-rule)}
+.axis-track span{position:absolute;top:0;transform:translateX(-50%);font:400 .7rem var(--font-outlier);color:var(--color-muted-2)}
+.axis-track span::after{content:"";position:absolute;left:50%;top:1rem;width:1px;height:.4rem;background:var(--color-rule)}
+.span-row{display:grid;grid-template-columns:13rem 1fr 5rem;align-items:center;padding:.45rem 1rem;border-bottom:1px solid var(--color-rule-2)}
+.span-row:last-child{border-bottom:0}
+.span-name{font-size:.88rem;color:var(--color-ink-2);padding-right:1rem}
+.span-name em{font-style:normal;color:var(--color-muted);font-size:.8rem;display:block}
+.span-track{position:relative;height:1.3rem}
+.span-bar{position:absolute;top:.35rem;height:.6rem;background:var(--color-accent-2)}
+.span-bar.hot{background:transparent;border:1px solid var(--color-accent-2);background-image:repeating-linear-gradient(90deg,var(--color-accent-2) 0 2px,transparent 2px 6px)}
+.span-bar.final{background:var(--color-accent);width:4px!important}
+.span-bar.meter{background:var(--color-rule)}
+.span-dur{font:400 .75rem var(--font-outlier);color:var(--color-muted);white-space:nowrap;text-align:right}
+.span-row.final .span-dur{color:var(--color-accent)}
+@media (max-width:700px){.axis{display:none}.span-row{grid-template-columns:1fr 4rem;gap:.2rem .5rem}.span-name{grid-column:1 / -1}}
+.trace-note{margin:1rem 0 0}
+
+/* pricing */
+.billing{display:flex;align-items:center;gap:.6rem;margin-bottom:2rem;font-size:.92rem;font-weight:500}
+.seg{display:flex}
+.seg button{font:500 .85rem var(--font-body);background:none;border:1px solid var(--color-rule);color:var(--color-ink-2);padding:.4rem .8rem;margin-left:-1px;cursor:pointer;border-radius:0}
+.seg button[aria-pressed="true"]{background:var(--color-paper-3);color:var(--color-ink);box-shadow:inset 3px 0 0 var(--color-accent)}
+.save{color:var(--color-accent-2)}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--color-rule);border-bottom:1px solid var(--color-rule)}
+.tier{padding:1.6rem 1.4rem 1.8rem 0;display:flex;flex-direction:column}
+.tier+.tier{border-left:1px solid var(--color-rule);padding-left:1.4rem}
+.tier.pick{background:var(--color-paper-2)}
+.tier h3{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:.35rem}
+.tier .who{margin:0 0 1.5rem;min-height:3.2em;font-size:.95rem}
+.price{font-size:2.6rem;letter-spacing:-.03em;color:var(--color-ink);line-height:1}
+.price-unit{display:block;font-size:.85rem;color:var(--color-muted);margin-top:.4rem;font-weight:500}
+.sample{font:400 .95rem var(--font-outlier);border:1px solid var(--color-rule);padding:.55rem .75rem;margin:1.4rem 0;background:var(--color-paper-3);color:var(--color-ink)}
+.tier ul{list-style:none;padding:0;margin:0 0 1.6rem;font-size:.92rem;flex:1}
+.tier li{padding:.45rem 0;border-top:1px solid var(--color-rule-2)}
+.tier li.no{color:var(--color-muted-2);text-decoration:line-through}
+.tier .btn{align-self:flex-start}
+@media (max-width:980px){.tiers{grid-template-columns:1fr 1fr}.tier:nth-child(3){border-left:0;padding-left:0}.tier:nth-child(n+3){border-top:1px solid var(--color-rule)}.tier.pick{padding-left:1.4rem}}
+@media (max-width:620px){.tiers{grid-template-columns:1fr}.tier,.tier+.tier{border-left:0;padding-left:0}.tier+.tier{border-top:1px solid var(--color-rule)}.tier.pick{padding-left:1rem;padding-right:1rem}}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--color-rule)}
+.quotes blockquote{margin:0;padding:1.75rem 1.5rem 0 0;font-size:1.15rem;line-height:1.45;color:var(--color-ink)}
+.quotes blockquote+blockquote{border-left:1px solid var(--color-rule);padding-left:1.5rem}
+.quotes footer{margin-top:1rem;font-size:.85rem;color:var(--color-muted);font-weight:500}
+.quotes footer b{display:block;color:var(--color-ink-2);font-weight:500}
+@media (max-width:900px){.quotes{grid-template-columns:1fr}.quotes blockquote+blockquote{border-left:0;padding-left:0;border-top:1px solid var(--color-rule-2);margin-top:1.75rem}}
+
+/* faq */
+.faq{border-top:1px solid var(--color-rule);max-width:52rem}
+details{border-bottom:1px solid var(--color-rule-2);padding:1rem 0}
+summary{font-weight:500;font-size:1.1rem;color:var(--color-ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--color-muted);font-family:var(--font-outlier)}
+details[open] summary::after{content:"−";color:var(--color-accent)}
+details p{margin:.55rem 0 0}
+
+/* close: form first */
+.close-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media (max-width:820px){.close-grid{grid-template-columns:1fr}}
+.close-grid h2{font-size:clamp(2.4rem,5.5vw,4.4rem);letter-spacing:-.04em;margin-bottom:1rem}
+.form{background:var(--color-paper-2);padding:1.5rem}
+.form label{display:block;font-weight:500;font-size:.88rem;color:var(--color-muted);margin-bottom:.4rem}
+.form input,.form select{width:100%;background:var(--color-paper);border:1px solid var(--color-muted-2);color:var(--color-ink);font:400 .95rem var(--font-outlier);padding:.65rem .75rem;border-radius:0;margin-bottom:1.1rem}
+.form input:focus,.form select:focus{outline:none;border-color:var(--color-focus)}
+
+footer.site{border-top:1px solid var(--color-rule);padding:2.5rem 0 3rem;font-size:.88rem;color:var(--color-muted)}
+.foot{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.foot p{margin:0 0 .6rem;max-width:46rem}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;gap:1.5rem}
+.foot a{color:var(--color-ink-2)}
+
+/* cookie + modal */
+.cookie{position:fixed;left:1rem;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));max-width:420px;background:var(--color-paper-2);border:1px solid var(--color-rule);padding:1rem 1.1rem;z-index:20;font-size:.9rem}
+.cookie p{margin:0 0 .85rem}
+.cookie[hidden]{display:none}
+.modal{position:fixed;inset:0;background:color-mix(in oklab,var(--color-paper-3) 82%,transparent);display:grid;place-items:center;z-index:30;padding:1rem}
+.modal[hidden]{display:none}
+.modal-box{background:var(--color-paper-2);border:1px solid var(--color-rule);max-width:460px;width:100%;padding:1.75rem}
+.modal-box h3{font-size:1.5rem;letter-spacing:-.02em;margin-bottom:.6rem}
+.modal-box p{margin:0 0 1.4rem}
+</style>
+</head>
+<body>
+
+<div class="status" role="status">
+  <div class="wrap"><span class="sq" aria-hidden="true"></span><span>Comma Service degraded in us-east-1 since <span class="measure">14:02 UTC</span>. Greetings may arrive without punctuation.</span></div>
+</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="wordmark" href="#top">HelloWorld <span>Enterprise</span></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#trace">Architecture</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#trust">Trust</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <button class="btn btn--sm" data-sales>Talk to sales</button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-copy">
+      <h1>Say hello to the world. At scale.</h1>
+      <p class="lede">The industry’s most trusted platform for printing “Hello, World.” Forty-seven microservices, three regions, one string, one planet.</p>
+      <div class="pair">
+        <button class="btn btn--primary" data-sales>Request a demo</button>
+        <a class="btn" href="#demo">Try the live demo</a>
+      </div>
+      <p class="fine label">Free trial includes lowercase letters. No credit card required until the comma.</p>
+    </div>
+
+    <div class="scene-box">
+      <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMid slice" role="img" aria-hidden="true">
+        <defs>
+          <radialGradient id="ocean" cx="38%" cy="40%" r="70%">
+            <stop offset="0" stop-color="#3f78b5"/>
+            <stop offset=".55" stop-color="#1d4c86"/>
+            <stop offset="1" stop-color="#0c2448"/>
+          </radialGradient>
+          <linearGradient id="night" x1="0" y1="0" x2="1" y2="0.25">
+            <stop offset=".38" stop-color="#050403" stop-opacity="0"/>
+            <stop offset=".52" stop-color="#050403" stop-opacity=".7"/>
+            <stop offset=".64" stop-color="#050403" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="regolith" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9d968c"/>
+            <stop offset=".18" stop-color="#6f6a63"/>
+            <stop offset=".6" stop-color="#3b3834"/>
+            <stop offset="1" stop-color="#1a1816"/>
+          </linearGradient>
+          <radialGradient id="limb" cx="50%" cy="50%" r="50%"><stop offset=".7" stop-color="#050403" stop-opacity="0"/><stop offset="1" stop-color="#050403" stop-opacity=".55"/></radialGradient>
+          <clipPath id="earthClip"><circle cx="1250" cy="330" r="150"/></clipPath>
+          <clipPath id="moonClip"><path d="M0 800 C 420 712, 980 690, 1600 745 L1600 900 L0 900 Z"/></clipPath>
+          <filter id="clouds" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.018 0.034" numOctaves="5" seed="4"/>
+            <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  2.6 0 0 0 -1.25"/>
+          </filter>
+          <filter id="land" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="4" seed="11"/>
+            <feColorMatrix values="0 0 0 0 .52  0 0 0 0 .42  0 0 0 0 .28  6 0 0 0 -3.1"/>
+          </filter>
+          <filter id="grain" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05 0.3" numOctaves="3" seed="2"/>
+            <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1"/>
+          </filter>
+        </defs>
+
+        <rect width="1600" height="900" fill="var(--color-paper)"/>
+
+        <!-- Earth -->
+        <g clip-path="url(#earthClip)">
+          <rect x="1100" y="180" width="300" height="300" fill="url(#ocean)"/>
+          <rect x="1100" y="180" width="300" height="300" filter="url(#land)"/>
+          <rect x="1100" y="180" width="300" height="300" filter="url(#clouds)"/>
+          <rect x="1100" y="180" width="300" height="300" fill="url(#limb)"/>
+          <rect x="1100" y="180" width="300" height="300" fill="url(#night)"/>
+        </g>
+        <path d="M1250 180 A150 150 0 0 0 1162 452" fill="none" stroke="#9cc4ee" stroke-opacity=".45" stroke-width="2"/>
+
+        <!-- Moon -->
+        <g clip-path="url(#moonClip)">
+          <rect y="680" width="1600" height="220" fill="url(#regolith)"/>
+          <rect y="680" width="1600" height="220" filter="url(#grain)" opacity=".3"/>
+          <g fill="none" stroke-width="2">
+            <ellipse cx="760" cy="736" rx="90" ry="8" stroke="#1d1b18" stroke-opacity=".5"/>
+            <ellipse cx="760" cy="739" rx="90" ry="8" stroke="#b4ada2" stroke-opacity=".22"/>
+            <ellipse cx="1180" cy="742" rx="40" ry="5" stroke="#1d1b18" stroke-opacity=".5"/>
+            <ellipse cx="1420" cy="790" rx="80" ry="10" stroke="#1d1b18" stroke-opacity=".45"/>
+            <ellipse cx="1000" cy="850" rx="130" ry="16" stroke="#1d1b18" stroke-opacity=".35"/>
+          </g>
+          <path d="M0 800 C 420 712, 980 690, 1600 745" fill="none" stroke="#c9c2b6" stroke-opacity=".5" stroke-width="2"/>
+        </g>
+      </svg>
+      <picture class="photo" hidden>
+        <!-- Apollo 8, AS08-14-2383, "Earthrise", 24 Dec 1968. NASA, public domain.
+             Drop a local copy at assets/earthrise.jpg to self-host; otherwise Wikimedia Commons is used. -->
+        <img id="earthrise" src="assets/earthrise.jpg" alt="Earthrise, photographed by the Apollo 8 crew on 24 December 1968: the half-lit Earth over the grey horizon of the Moon" width="1600" height="1600" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="strip" aria-label="Greeting telemetry">
+        <div class="wrap">
+          <span><b>Target</b> Earth</span>
+          <span><b>Range</b> 384,400 km</span>
+          <span><b>One-way latency</b> 1.28 s</span>
+          <span><b>Comma</b> degraded</span>
+          <span><b>Now</b> <span id="utc">--:-- UTC</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="demo">
+    <div class="wrap">
+      <div class="head">
+        <h2>Print a greeting. Watch the platform work.</h2>
+        <p>Pick a plan and press the button. Every hello passes through the full production pipeline, exactly as it would for a paying customer.</p>
+      </div>
+      <div class="demo ticks">
+        <div class="demo-top">
+          <span class="label">helloworld greet</span>
+          <div class="plans" role="group" aria-label="Simulate plan">
+            <button aria-pressed="true" data-plan="free">Free</button>
+            <button aria-pressed="false" data-plan="pro">Pro</button>
+            <button aria-pressed="false" data-plan="business">Business</button>
+            <button aria-pressed="false" data-plan="enterprise">Enterprise</button>
+          </div>
+        </div>
+        <div class="demo-body" id="log" aria-live="polite">
+          <p class="t-dim">$ helloworld greet --target=world</p>
+          <p class="t-dim">Ready. Press “Print greeting” to provision your hello.</p>
+        </div>
+        <div class="demo-foot">
+          <span class="label" id="meter">0 greetings used this month</span>
+          <button class="btn btn--primary btn--sm run" id="run">Print greeting</button>
+        </div>
+      </div>
+
+      <div class="figures">
+        <div><span class="measure">4.2<small>B</small></span><span class="label">Greetings served, most of them retries</span></div>
+        <div><span class="measure">99.97<small>%</small></span><span class="label">Uptime, excluding the comma</span></div>
+        <div><span class="measure">11.4<small>s</small></span><span class="label">p99 time to hello</span></div>
+      </div>
+      <div class="logos">
+        <span class="label">Trusted by greeting teams at entirely fictional companies</span>
+        <span>Synergy McSynergyface</span><span>Pivot &amp; Pivot LLP</span><span>Megacorp of Nowhere</span><span>notarealbank</span><span>Definitely Real Freight</span><span>Blockchain Blockchain Inc.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="platform">
+    <div class="wrap">
+      <div class="head">
+        <h2>Everything you need to greet the world, and nothing you asked for</h2>
+        <p>Your engineers used to print “Hello, World” in one line. That line had no SLA, no audit trail and no account manager. We fixed that.</p>
+      </div>
+      <ul class="rows">
+        <li><h3>Greeting-as-Code</h3><p>Declare your hello in 340 lines of YAML, then roll it back when someone changes “World” to “world.”</p></li>
+        <li><h3>Punctuation governance</h3><p>Role-based access for every comma and exclamation point. Excitement requires two approvers.</p></li>
+        <li><h3>AI-powered salutations</h3><p>Predicts the next greeting will be “Hello, World” with 94% accuracy. The other 6% are hallucinations.</p></li>
+        <li><h3>Multi-region hello</h3><p>Replicated across three regions, with eventual consistency on capitalization.</p></li>
+        <li><h3>Audit logs</h3><p>Know who said hello, when (in UTC), from which IP, and whether the world said it back.</p></li>
+        <li><h3>Zero-trust greeting</h3><p>Every world is assumed hostile. Each hello is authenticated, authorized and politely suspicious.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="trace">
+    <div class="wrap">
+      <div class="head">
+        <h2>Anatomy of a single hello</h2>
+        <p>A distributed trace of one greeting in production. The work you used to do in one line now takes fourteen services and eleven seconds, which is how you know it’s enterprise.</p>
+      </div>
+      <div class="trace ticks">
+        <div class="trace-head"><span class="label">Trace 7f3a…c91e · greet(target=“world”)</span><span class="measure">11.420 s total</span></div>
+        <div class="axis" aria-hidden="true"><span></span><div class="axis-track" id="axis"></div><span></span></div>
+        <div id="spans"></div>
+      </div>
+      <p class="trace-note label">Showing 14 of 47 services. The rest are owned by a team that was reorganized.</p>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="head">
+        <h2>Simple, transparent pricing for every character</h2>
+        <p>Start with lowercase and grow into punctuation as your organization matures.</p>
+      </div>
+      <div class="billing">
+        <div class="seg" role="group" aria-label="Billing period">
+          <button aria-pressed="true" data-bill="m">Monthly</button>
+          <button aria-pressed="false" data-bill="y">Annually</button>
+        </div>
+        <span class="save">Save 2%</span>
+        <button id="billing" role="switch" aria-checked="false" hidden></button>
+      </div>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free</h3>
+          <p class="who">For hobbyists greeting the world quietly.</p>
+          <div class="price measure">$0</div><span class="price-unit">Forever-ish</span>
+          <div class="sample">hello world</div>
+          <ul>
+            <li>Lowercase letters</li>
+            <li>10 greetings per month</li>
+            <li>Community support (a forum nobody answers)</li>
+            <li class="no">The comma</li>
+            <li class="no">Capital letters</li>
+          </ul>
+          <a class="btn" href="#demo">Start greeting</a>
+        </div>
+        <div class="tier pick">
+          <h3>Pro</h3>
+          <p class="who">For teams ready for proper grammar.</p>
+          <div class="price measure" data-price="49">$49</div><span class="price-unit">Per user per month</span>
+          <div class="sample">Hello, World</div>
+          <ul>
+            <li>Capital H and capital W</li>
+            <li>The comma (subject to availability)</li>
+            <li>1,000 greetings per month</li>
+            <li>Email support, 72-hour response</li>
+            <li class="no">SSO</li>
+          </ul>
+          <a class="btn btn--primary" href="#demo">Unlock the comma</a>
+        </div>
+        <div class="tier">
+          <h3>Business</h3>
+          <p class="who">For organizations that greet more than one world.</p>
+          <div class="price measure" data-price="399">$399</div><span class="price-unit">Per user per month</span>
+          <div class="sample">Hello, Mars</div>
+          <ul>
+            <li>Custom worlds, up to 225 million km away</li>
+            <li>SSO (we know, we know)</li>
+            <li>Unlimited greetings, fair use applies</li>
+            <li>Audit logs, retained 7 days</li>
+            <li class="no">The exclamation point</li>
+          </ul>
+          <a class="btn" href="#demo">Start Business trial</a>
+        </div>
+        <div class="tier">
+          <h3>Enterprise</h3>
+          <p class="who">For companies that need to be excited about it.</p>
+          <div class="price">Let’s talk</div><span class="price-unit">Annual contract, 3-year minimum</span>
+          <div class="sample">Hello, World!</div>
+          <ul>
+            <li>The exclamation point</li>
+            <li>Dedicated Customer Success Greeter</li>
+            <li>On-prem hello in your data center</li>
+            <li>99.99% SLA, credits paid in store vouchers</li>
+            <li>Quarterly greeting reviews</li>
+          </ul>
+          <button class="btn" data-sales>Contact sales</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="wrap">
+      <div class="head">
+        <h2>Security and compliance you can point at</h2>
+        <p>Audited by an auditor we made up. Your greeting is encrypted at rest, in transit, and while it’s being said.</p>
+      </div>
+      <ul class="rows">
+        <li><h3>SOC 2 Type II<span class="tag">Allegedly</span></h3><p>We have a binder. It is very thick.</p></li>
+        <li><h3>ISO 27001<span class="tag">Self-certified</span></h3><p>We checked, and we approve of ourselves.</p></li>
+        <li><h3>GDPR<span class="tag">Consent obtained</span></h3><p>The world clicked “Accept all.” We have the cookie to prove it.</p></li>
+        <li><h3>HIPAA<span class="tag">Unclear why</span></h3><p>Legal said to include it, so here it is.</p></li>
+        <li><h3>FedRAMP<span class="tag">In progress since 2019</span></h3><p>Any year now.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <h2>Loved by platform teams everywhere</h2>
+        <p>Completely made-up quotes from completely made-up customers.</p>
+      </div>
+      <div class="quotes">
+        <blockquote>“We used to print hello world with one line of code. Now we have a platform team of eleven and a quarterly roadmap. Leadership has never been happier.”
+          <footer><b>Brenda Placeholder</b>VP of Platform, Pivot &amp; Pivot LLP</footer></blockquote>
+        <blockquote>“The comma outage last Tuesday cost us nothing, because we couldn’t figure out what the comma was for. But it was nice to have someone to file a ticket with.”
+          <footer><b>Chad Stakeholder</b>Staff Engineer, Definitely Real Freight</footer></blockquote>
+        <blockquote>“Procurement took nine months. Security review took six. Our first greeting went out in Q3 and the room applauded.”
+          <footer><b>Dev McOps</b>Director of Engineering, Megacorp of Nowhere</footer></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="head"><h2>Frequently asked questions</h2><p></p></div>
+      <div class="faq">
+        <details><summary>Can’t I just write print("Hello, World")?</summary><p>You could. You could also not have a vendor to blame when it breaks.</p></details>
+        <details><summary>Is the exclamation point really Enterprise only?</summary><p>Excitement is a premium feature. Most customers find that a calm, punctuation-free hello meets their needs.</p></details>
+        <details><summary>Do you use AI?</summary><p>Yes.</p></details>
+        <details><summary>Where is my greeting stored?</summary><p>In three cloud regions and a nightly backup on Greg’s laptop.</p></details>
+        <details><summary>Why is there a picture of Earth from the Moon?</summary><p>Brand told us to “think bigger.” The world is the target market.</p></details>
+        <details><summary>Do you offer an open-source version?</summary><p>We maintain a community edition. It is the one line of code.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap close-grid">
+      <div>
+        <h2>Ready to say hello?</h2>
+        <p>Join thousands of companies that turned a one-liner into a line item. A Greeting Solutions Architect will be in touch within one business quarter.</p>
+      </div>
+      <form class="form ticks" id="demo-form">
+        <label for="f-email">Work email</label>
+        <input id="f-email" type="email" placeholder="you@company.example" autocomplete="email">
+        <label for="f-volume">Greetings per month</label>
+        <select id="f-volume">
+          <option>1</option>
+          <option>10–1,000</option>
+          <option>1,000–1,000,000</option>
+          <option>All of them</option>
+        </select>
+        <button class="btn btn--primary" type="submit">Request a demo</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <p>© 2026 Greeting Systems Holdings of Nowhere, a company that does not exist. This site is a parody. All companies, people, quotes, certifications and statistics are fictional; any resemblance to real ones is coincidental and frankly concerning.</p>
+      <p>Hero image: “Earthrise,” Apollo 8 (AS08-14-2383), 24 December 1968. Credit: NASA, public domain. Not affiliated with or endorsed by NASA.</p>
+    </div>
+    <ul>
+      <li><a href="#trust">Security</a></li>
+      <li><a href="#top" data-careers>Careers</a></li>
+      <li><a href="#top" data-sales>Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie notice">
+  <p>We use one cookie. It says hello. We don’t track you, which we realize undermines our entire business model.</p>
+  <div class="pair">
+    <button class="btn btn--primary btn--sm" id="cookie-ok">Accept the cookie</button>
+    <button class="btn btn--sm" id="cookie-no">Reject (it will be sad)</button>
+  </div>
+</div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <h3 id="modal-title">Talk to sales</h3>
+    <p id="modal-text"></p>
+    <button class="btn btn--primary" id="modal-close">Sounds great</button>
+  </div>
+</div>
+
+<script>
+// Earthrise photo: try the self-hosted copy, then Wikimedia Commons, else fall back to the SVG drawing.
+(function(){
+  var img=document.getElementById("earthrise"), box=img.parentNode;
+  var tries=["https://upload.wikimedia.org/wikipedia/commons/a/a8/NASA-Apollo8-Dec24-Earthrise.jpg"];
+  img.addEventListener("load",function(){ box.hidden=false; });
+  img.addEventListener("error",function(){ var next=tries.shift(); if(next) img.src=next; });
+})();
+</script>
+<script>
+// Rim extras: trace waterfall, UTC clock, billing segments, demo form
+(function(){
+  var TOTAL = 11.42;
+  var SPANS = [
+    ["edge-cdn","Caches the H",0,0.04],
+    ["api-gateway","Says hello to your hello",0.04,0.12],
+    ["sso-broker","SAML, OIDC and vibes",0.16,0.41],
+    ["consent-service","Did the world agree?",0.57,0.9],
+    ["feature-flags","greeting.world.enabled",1.47,0.22],
+    ["greeting-orchestrator","Fans out to 47 services",1.69,9.72],
+    ["kafka","greetings.v3.prod",1.8,1.3],
+    ["capitalization-engine","GPU-accelerated",3.1,1.6],
+    ["comma-service","Degraded, retried 3 times",4.7,2.1,"hot"],
+    ["exclamation-service","402 Payment Required",6.8,0.9],
+    ["vector-db","Semantically similar hellos",7.7,1.1],
+    ["blockchain-notary","Deprecated, can’t turn it off",8.8,1.9],
+    ["billing-meter","Runs the whole time",0,11.42,"meter"],
+    ["printf","The actual work",11.419,0.001,"final"]
+  ];
+  var spans = document.getElementById("spans"), axis = document.getElementById("axis");
+  [0,2,4,6,8,10].forEach(function(s){ var t=document.createElement("span"); t.style.left=(s/TOTAL*100)+"%"; t.textContent=s+" s"; axis.appendChild(t); });
+  SPANS.forEach(function(s){
+    var row=document.createElement("div"); row.className="span-row"+(s[4]==="final"?" final":"");
+    var left=s[2]/TOTAL*100, width=Math.max(.4,s[3]/TOTAL*100);
+    var dur = s[3] < 0.01 ? "0.001 s" : s[3].toFixed(2)+" s";
+    row.innerHTML='<div class="span-name"></div><div class="span-track"><div class="span-bar"></div></div><span class="span-dur"></span>';
+    row.querySelector(".span-name").innerHTML = s[0] + "<em></em>";
+    row.querySelector("em").textContent = s[1];
+    var bar=row.querySelector(".span-bar"); bar.style.left=left+"%"; bar.style.width=width+"%"; if(s[4]) bar.classList.add(s[4]);
+    row.querySelector(".span-dur").textContent=dur;
+    spans.appendChild(row);
+  });
+
+  var utc=document.getElementById("utc");
+  function tick(){ var n=new Date(); utc.textContent=String(n.getUTCHours()).padStart(2,"0")+":"+String(n.getUTCMinutes()).padStart(2,"0")+" UTC"; }
+  tick(); setTimeout(function(){ tick(); setInterval(tick,60000); }, (60-new Date().getUTCSeconds())*1000);
+
+  var sw=document.getElementById("billing");
+  document.querySelectorAll("[data-bill]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var yearly=b.dataset.bill==="y";
+      document.querySelectorAll("[data-bill]").forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); });
+      if ((sw.getAttribute("aria-checked")==="true")!==yearly) sw.click();
+    });
+  });
+
+  document.getElementById("demo-form").addEventListener("submit",function(e){
+    e.preventDefault();
+    var m=document.getElementById("modal");
+    document.getElementById("modal-title").textContent="Demo requested";
+    document.getElementById("modal-text").textContent="Your request has been placed in a queue behind 4,000 other greetings. Estimated response: Q3, in UTC.";
+    m.hidden=false; document.getElementById("modal-close").focus();
+  });
+})();
+</script>
+<script>
+(function(){
+  console.log("%cHello, World!", "font:700 28px sans-serif;color:#0F2A4A");
+  console.log("%c⚠ Unlicensed exclamation point detected in your console. Sales has been notified.", "color:#C7591F;font-weight:600");
+  console.log("Like poking around devtools? We’re hiring a Senior Staff Principal Hello Engineer (L9). Must have 10+ years of Hello experience.");
+
+  var plan = "free", used = 0, running = false;
+  var log = document.getElementById("log"), runBtn = document.getElementById("run"), meter = document.getElementById("meter");
+
+  var scripts = {
+    free: {out:"hello world", ms:4210, cost:"0.38", lines:[
+      ["t-dim","[sso] Validating SAML assertion… ok (412 ms)"],
+      ["t-ok","[consent] Checking greeting consent for “World”… granted"],
+      ["t-dim","[flags] greeting.punctuation.comma = false (plan: Free)"],
+      ["t-dim","[kafka] Publishing to greetings.v3.prod… ack"],
+      ["t-dim","[orchestrator] Fanning out to 47 services…"],
+      ["t-warn","[capitalization-engine] Plan does not include uppercase. Lowercasing."],
+      ["t-err","[comma-service] 403 Forbidden: the comma requires Pro"],
+      ["t-dim","[printf] Rendering…"]
+    ], upsell:"Unlock the comma with Pro."},
+    pro: {out:"Hello, World", ms:6830, cost:"1.12", lines:[
+      ["t-dim","[sso] Validating SAML assertion… ok (388 ms)"],
+      ["t-ok","[consent] Checking greeting consent for “World”… granted"],
+      ["t-ok","[capitalization-engine] Allocating GPU for H and W… done"],
+      ["t-warn","[comma-service] Degraded in us-east-1. Failing over to eu-west-1…"],
+      ["t-ok","[comma-service] Comma acquired from Ireland (2.1 s)"],
+      ["t-err","[exclamation-service] 402 Payment Required"],
+      ["t-dim","[printf] Rendering…"]
+    ], upsell:"Want to greet Mars? Upgrade to Business."},
+    business: {out:"Hello, Mars", ms:8120, cost:"4.07", lines:[
+      ["t-dim","[sso] Identity provider handshake… ok (the SSO tax has been applied)"],
+      ["t-ok","[consent] Checking greeting consent for “Mars”… no response, assuming yes"],
+      ["t-dim","[worlds] Resolving custom world “Mars” via vector-db… similarity 0.91"],
+      ["t-ok","[comma-service] Comma acquired"],
+      ["t-dim","[audit] Greeting logged. Retention: 7 days."],
+      ["t-err","[exclamation-service] Forbidden: excitement is Enterprise only"],
+      ["t-dim","[printf] Rendering…"]
+    ], upsell:"Feeling something? The exclamation point is Enterprise only."},
+    enterprise: {out:"Hello, World!", ms:11420, cost:"38.50", lines:[
+      ["t-dim","[sso] Validating SAML assertion against 3 identity providers… ok"],
+      ["t-ok","[compliance] Two approvers signed off on excitement"],
+      ["t-ok","[comma-service] Dedicated comma provisioned in your VPC"],
+      ["t-ok","[exclamation-service] Exclamation point delivered by your Customer Success Greeter"],
+      ["t-dim","[blockchain-notary] Notarizing greeting… (deprecated, can’t turn it off)"],
+      ["t-dim","[sales] Your account manager has been notified of this greeting"],
+      ["t-dim","[printf] Rendering…"]
+    ], upsell:"Your QBR has been scheduled to discuss this greeting."}
+  };
+
+  function line(cls, text){
+    var p = document.createElement("p"); p.className = cls; p.textContent = text;
+    log.appendChild(p); log.scrollTop = log.scrollHeight;
+  }
+
+  document.querySelectorAll(".plans button").forEach(function(b){
+    b.addEventListener("click", function(){
+      if (running) return;
+      plan = b.dataset.plan;
+      document.querySelectorAll(".plans button").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      log.innerHTML = "";
+      line("t-dim", "$ helloworld greet --target=world --plan=" + plan);
+      line("t-dim", "Plan switched to " + b.textContent + ". Press “Print greeting.”");
+    });
+  });
+
+  runBtn.addEventListener("click", function(){
+    if (running) return;
+    var s = scripts[plan];
+    if (plan === "free" && used >= 10){
+      log.innerHTML = "";
+      line("t-err", "[billing-meter] 429: You’ve used all 10 free greetings this month.");
+      line("t-dim", "Your next free hello is available on the 1st.");
+      return;
+    }
+    running = true; runBtn.disabled = true; runBtn.textContent = "Greeting…";
+    log.innerHTML = "";
+    line("t-dim", "$ helloworld greet --target=world --plan=" + plan);
+    var step = Math.max(320, Math.floor(s.ms / (s.lines.length + 1)));
+    s.lines.forEach(function(l, i){ setTimeout(function(){ line(l[0], l[1]); }, step * (i + 1)); });
+    setTimeout(function(){
+      line("t-out", s.out);
+      line("t-dim", "Elapsed " + (s.ms/1000).toFixed(2) + " s. Cost $" + s.cost + ", billed to your trial.");
+      line("t-warn", s.upsell);
+      used++;
+      meter.textContent = used + (plan === "free" ? " of 10" : "") + " greeting" + (used === 1 ? "" : "s") + " used this month";
+      running = false; runBtn.disabled = false; runBtn.textContent = "Print greeting";
+    }, step * (s.lines.length + 1));
+  });
+
+  // billing toggle: save a heroic 2%
+  var sw = document.getElementById("billing");
+  sw.addEventListener("click", function(){
+    var on = sw.getAttribute("aria-checked") !== "true";
+    sw.setAttribute("aria-checked", on ? "true" : "false");
+    document.querySelectorAll("[data-price]").forEach(function(el){
+      var base = +el.dataset.price;
+      el.textContent = "$" + (on ? (Math.round(base * 0.98 * 100) / 100).toFixed(2) : base);
+    });
+  });
+
+  // sales modal
+  var modal = document.getElementById("modal"), mtext = document.getElementById("modal-text"), mtitle = document.getElementById("modal-title");
+  var salesMsgs = [
+    "Thanks for your interest. A Greeting Solutions Architect will reach out within 4–6 business quarters to schedule a discovery call about your discovery call.",
+    "We’ve added you to a nurture sequence. You’ll receive 14 emails about the exclamation point.",
+    "Before we can share pricing, please confirm your company has at least 5,000 employees and a strong desire to greet."
+  ];
+  var mi = 0;
+  document.querySelectorAll("[data-sales]").forEach(function(b){
+    b.addEventListener("click", function(e){
+      e.preventDefault();
+      mtitle.textContent = "Talk to sales";
+      mtext.textContent = salesMsgs[mi++ % salesMsgs.length];
+      modal.hidden = false; document.getElementById("modal-close").focus();
+    });
+  });
+  document.querySelectorAll("[data-careers]").forEach(function(b){
+    b.addEventListener("click", function(e){
+      e.preventDefault();
+      mtitle.textContent = "Careers";
+      mtext.textContent = "We’re hiring a Senior Staff Principal Hello Engineer (L9). Requirements: 10+ years of Hello, 5+ years of World, and strong opinions about commas. Salary: competitive, payable in greetings.";
+      modal.hidden = false; document.getElementById("modal-close").focus();
+    });
+  });
+  function closeModal(){ modal.hidden = true; }
+  document.getElementById("modal-close").addEventListener("click", closeModal);
+  modal.addEventListener("click", function(e){ if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeModal(); });
+
+  // the one cookie
+  var cookie = document.getElementById("cookie");
+  try { if (localStorage.getItem("hw-cookie")) cookie.hidden = true; } catch(e){}
+  function dismiss(v){ cookie.hidden = true; try { localStorage.setItem("hw-cookie", v); } catch(e){} }
+  document.getElementById("cookie-ok").addEventListener("click", function(){ dismiss("yes"); });
+  document.getElementById("cookie-no").addEventListener("click", function(){
+    var p = cookie.querySelector("p");
+    if (p.dataset.sad){ dismiss("no"); return; }
+    p.dataset.sad = "1";
+    p.textContent = "The cookie understands. It just wanted to say hello. Click reject again if you really mean it.";
+  });
+})();
+</script>
+</body>
+</html>
