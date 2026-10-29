@@ -71,7 +71,7 @@ nav a{color:var(--color-ink-2)}
 @media (max-width:860px){nav ul{display:none}}
 
 /* hero: the scene */
-.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--color-rule)}
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--color-rule);background:#000}
 .scene{display:block;width:100%;height:100%}
 .hero-copy{position:relative;z-index:1;padding-top:5rem;padding-bottom:2rem}
 h1{font-size:clamp(2.9rem,6.4vw,5.6rem);letter-spacing:-0.04em;max-width:11ch;margin-bottom:1.5rem}
@@ -99,7 +99,7 @@ h1{font-size:clamp(2.9rem,6.4vw,5.6rem);letter-spacing:-0.04em;max-width:11ch;ma
 .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--color-paper) 0%,color-mix(in oklab,var(--color-paper) 70%,transparent) 32%,transparent 62%),linear-gradient(0deg,color-mix(in oklab,var(--color-paper) 85%,transparent) 0,transparent 22%)}
 .photo[hidden]{display:none}
 .scene-box.has-photo .scene{visibility:hidden}
-@media (min-width:900px){.photo{left:auto;width:min(72%,1000px)}.photo img{object-position:60% 100%}.photo::after{background:linear-gradient(90deg,var(--color-paper) 0%,transparent 28%),linear-gradient(0deg,color-mix(in oklab,var(--color-paper) 85%,transparent) 0,transparent 14%)}}
+@media (min-width:900px){.photo{left:auto;width:min(72%,1000px);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%),linear-gradient(180deg,transparent 0,#000 10%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 30%),linear-gradient(180deg,transparent 0,#000 10%);mask-composite:intersect}.photo img{object-position:60% 100%}.photo::after{background:linear-gradient(0deg,color-mix(in oklab,var(--color-paper) 85%,transparent) 0,transparent 14%)}}
 @media (max-width:899px){.photo::after{background:linear-gradient(0deg,var(--color-paper) 0,transparent 30%)}.photo img{object-position:60% 35%}}
 
 /* sections */
