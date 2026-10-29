@@ -98,6 +98,7 @@ h1{font-size:clamp(2.9rem,6.4vw,5.6rem);letter-spacing:-0.04em;max-width:11ch;ma
 .photo img{width:100%;height:100%;object-fit:cover;object-position:62% 38%;display:block}
 .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--color-paper) 0%,color-mix(in oklab,var(--color-paper) 70%,transparent) 32%,transparent 62%),linear-gradient(0deg,color-mix(in oklab,var(--color-paper) 85%,transparent) 0,transparent 22%)}
 .photo[hidden]{display:none}
+@media (min-width:900px){.photo{left:auto;width:min(72%,1000px)}.photo img{object-position:60% 100%}.photo::after{background:linear-gradient(90deg,var(--color-paper) 0%,transparent 28%),linear-gradient(0deg,color-mix(in oklab,var(--color-paper) 85%,transparent) 0,transparent 14%)}}
 @media (max-width:899px){.photo::after{background:linear-gradient(0deg,var(--color-paper) 0,transparent 30%)}.photo img{object-position:60% 35%}}
 
 /* sections */
@@ -325,7 +326,7 @@ footer.site{border-top:1px solid var(--color-rule);padding:2.5rem 0 3rem;font-si
       <picture class="photo" hidden>
         <!-- Apollo 8, AS08-14-2383, "Earthrise", 24 Dec 1968. NASA, public domain.
              Drop a local copy at assets/earthrise.jpg to self-host; otherwise Wikimedia Commons is used. -->
-        <img id="earthrise" src="assets/earthrise.jpg" alt="Earthrise, photographed by the Apollo 8 crew on 24 December 1968: the half-lit Earth over the grey horizon of the Moon" width="1600" height="1600" fetchpriority="high" decoding="async">
+        <img id="earthrise" src="assets/earthrise.jpg" alt="Earthrise, photographed by the Apollo 8 crew on 24 December 1968: the half-lit Earth over the grey horizon of the Moon" width="1041" height="1000" fetchpriority="high" decoding="async">
       </picture>
       <div class="strip" aria-label="Greeting telemetry">
         <div class="wrap">
@@ -588,8 +589,10 @@ footer.site{border-top:1px solid var(--color-rule);padding:2.5rem 0 3rem;font-si
 (function(){
   var img=document.getElementById("earthrise"), box=img.parentNode;
   var tries=["https://upload.wikimedia.org/wikipedia/commons/a/a8/NASA-Apollo8-Dec24-Earthrise.jpg"];
-  img.addEventListener("load",function(){ box.hidden=false; });
+  function show(){ box.hidden=false; }
+  img.addEventListener("load",show);
   img.addEventListener("error",function(){ var next=tries.shift(); if(next) img.src=next; });
+  if(img.complete && img.naturalWidth) show();
 })();
 </script>
 <script>
